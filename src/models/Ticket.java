@@ -12,7 +12,11 @@ public class Ticket {
     private ParkingSpot parkingSpot;
 
     private EntryGate gate;
-    private Operator operator;
+    private Operator generatedBy;
+
+    public Operator getGeneratedBy() {
+        return generatedBy;
+    }
 
     public Date getDate() {
         return date;
@@ -62,11 +66,7 @@ public class Ticket {
         this.gate = gate;
     }
 
-    public Operator getOperator() {
-        return operator;
-    }
-
-    public void setOperator(Operator operator) {
-        this.operator = operator;
+    public void setGeneratedBy(Operator generatedBy) {
+        this.generatedBy = generatedBy;
     }
 }

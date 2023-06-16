@@ -4,8 +4,16 @@ import dtos.CreateParkingLotRequestDto;
 import models.ParkingLot;
 import repositories.ParkingLotRepository;
 
+// Task of this service is CREATE and UPDATE the Parking Lot Obj
 public class ParkingLotService {
-    private static ParkingLotRepository parkingLotRepository = new ParkingLotRepository();
+    private ParkingLotRepository parkingLotRepository;
+    // private static ParkingLotRepository parkingLotRepository = new
+    // ParkingLotRepository();
+
+    public ParkingLotService(ParkingLotRepository parkingLotRepository) {
+        super();
+        this.parkingLotRepository = parkingLotRepository;
+    }
 
     public ParkingLot createParkingLot(String address) {
         // (create new object + init the object) + save to database + return the same
@@ -19,5 +27,14 @@ public class ParkingLotService {
         ParkingLot savedParkingLot = ParkingLotRepository.save(parkingLot);
 
         return savedParkingLot;
+    }
+
+    public ParkingLot updateParkingLot(long id, String address) {
+        ParkingLot updatedParkingLot = parkingLotRepository.getParkingLotById(id);
+
+        if (updatedParkingLot != null)
+            updatedParkingLot.setAddress(address);
+
+        return ParkingLotRepository.update(id, updatedParkingLot);
     }
 }
